@@ -2,7 +2,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/ZorgIT/java-project-78/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ZorgIT/java-project-78/actions)
 
-![Java CI](https://github.com/hexlet-boilerplates/java-package/workflows/Java%20CI/badge.svg)
+![Java CI](https://github.com/ZorgIT/java-project-78/workflows/Java%20CI/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a3d0fcbd490b8b132959/maintainability)](https://codeclimate.com/github/ZorgIT/java-project-78/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a3d0fcbd490b8b132959/test_coverage)](https://codeclimate.com/github/ZorgIT/java-project-78/test_coverage)
 
