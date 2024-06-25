@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 //@Builder(setterPrefix = "with")
 
-public class StringSchema extends BaseSchema<String, StringSchema> {
+public class StringSchema extends BaseSchema<String> {
     private String containString = "";
     private int minLength = 0;
     private boolean required = false;
@@ -59,6 +59,11 @@ public class StringSchema extends BaseSchema<String, StringSchema> {
         return "StringSchema{"
                 + "line='" + containString + '\''
                 + ", minLength=" + minLength + '}';
+    }
+
+    public StringSchema required() {
+        setRequired(true);
+        return this;
     }
 
 }
