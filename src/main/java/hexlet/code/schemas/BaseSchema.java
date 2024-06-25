@@ -1,15 +1,20 @@
 package hexlet.code.schemas;
 
 public abstract class BaseSchema<T, V> {
+    private boolean required = false;
 
     public BaseSchema<T, V> required() {
         setRequired(true);
         return this;
     }
 
-    abstract boolean isValid(T t);
+    public abstract boolean isValid(T t);
 
-    abstract void setRequired(boolean b);
+    public boolean isRequired() {
+        return required;
+    }
 
-    abstract boolean isRequired();
+    public void setRequired(boolean required) {
+        this.required = required;
+    }
 }

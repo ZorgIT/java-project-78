@@ -8,7 +8,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 public class NumberSchema extends BaseSchema<Integer, NumberSchema> {
-    private boolean required = false;
+
     private boolean positiveConstrain = false;
     private boolean rangeConstrain = false;
     private int start;
@@ -55,14 +55,9 @@ public class NumberSchema extends BaseSchema<Integer, NumberSchema> {
         return result;
     }
 
-    @Override
-    public boolean isRequired() {
-        return required;
-    }
 
-    @Override
-    public void setRequired(boolean required) {
-        this.required = required;
-    }
+
+
+
 
 }
