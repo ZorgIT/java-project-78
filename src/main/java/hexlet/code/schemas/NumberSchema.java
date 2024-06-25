@@ -7,7 +7,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
-public class NumberSchema implements Schema<Integer, NumberSchema> {
+public class NumberSchema extends BaseSchema<Integer, NumberSchema> {
     private boolean required = false;
     private boolean positiveConstrain = false;
     private boolean rangeConstrain = false;

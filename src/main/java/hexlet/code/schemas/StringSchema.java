@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 //@Builder(setterPrefix = "with")
 
-public class StringSchema implements Schema<String, StringSchema> {
+public class StringSchema extends BaseSchema<String, StringSchema> {
     private String containString = "";
     private int minLength = 0;
     private boolean required = false;
