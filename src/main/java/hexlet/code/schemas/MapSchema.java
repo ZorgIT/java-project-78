@@ -8,16 +8,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@SuppressWarnings("unchecked")
 public class MapSchema<T> extends BaseSchema<Map<String, String>> {
     private int sizeof = -1;
     private Map<String, ? extends BaseSchema<T>> schemaMap;
 
-    public MapSchema sizeof(int sizeConstrain) {
+    public MapSchema<T> sizeof(int sizeConstrain) {
         setSizeof(sizeConstrain);
         return this;
     }
 
-    public MapSchema required() {
+    public MapSchema<T> required() {
         setRequired(true);
         return this;
     }
