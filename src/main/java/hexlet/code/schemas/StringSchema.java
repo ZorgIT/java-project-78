@@ -10,15 +10,10 @@ import lombok.Setter;
 @NoArgsConstructor
 //@Builder(setterPrefix = "with")
 
-public class StringSchema {
+public class StringSchema implements Schema<String, StringSchema> {
     private String containString = "";
     private int minLength = 0;
     private boolean required = false;
-
-    public StringSchema required() {
-        setRequired(true);
-        return this;
-    }
 
     public StringSchema minLength(int newMinLength) {
         setMinLength(newMinLength);
@@ -30,6 +25,7 @@ public class StringSchema {
         return this;
     }
 
+    @Override
     public boolean isValid(String line) {
         //var result = true;
         if (required) {
@@ -51,6 +47,11 @@ public class StringSchema {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean isRequired() {
+        return this.required;
     }
 
     @Override
