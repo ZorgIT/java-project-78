@@ -16,8 +16,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - run: chmod +x app/grad
       - uses: actions/checkout@v4
-
+      
       - name: Hexlet project check
         uses: hexlet/project-action@release
         with:
