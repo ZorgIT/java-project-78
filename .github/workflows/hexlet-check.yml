@@ -16,9 +16,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: chmod +x app/gradlew
+
       - uses: actions/checkout@v4
       
+      - run: chmod +x app/gradlew
       - name: Hexlet project check
         uses: hexlet/project-action@release
         with:
