@@ -4,38 +4,85 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Schema for validating integer values.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
-public class NumberSchema extends BaseSchema<Integer> {
+public final class NumberSchema extends BaseSchema<Integer> {
 
+    /**
+     * Status of positive numbers constrain.
+     */
     private boolean positiveConstrain = false;
+
+    /**
+     * Status of range constrain.
+     */
     private boolean rangeConstrain = false;
+
+    /**
+     * Start range for range constrain.
+     */
     private int start;
+    /**
+     * End range for range constrain.
+     */
     private int end;
 
+    /**
+     * Marks the number as required.
+     *
+     * @return the modified NumberSchema
+     */
     public NumberSchema required() {
         setRequired(true);
         return this;
     }
 
+    /**
+     * Specifies that the number must be positive.
+     *
+     * @return the modified NumberSchema
+     */
     public NumberSchema positive() {
         setPositiveConstrain(true);
         return this;
     }
 
-    public NumberSchema range(int startRange, int endRage) {
+    /**
+     * Specifies a range for the number.
+     *
+     * @param startRange the start of the range
+     * @param endRange   the end of the range
+     * @return the modified NumberSchema
+     */
+    public NumberSchema range(final int startRange, final int endRange) {
         setRangeConstrain(true);
         setStart(startRange);
-        setEnd(endRage);
+        setEnd(endRange);
         return this;
     }
 
-    public boolean isInRange(int number) {
+    /**
+     * Checks if a given number is within the specified range.
+     *
+     * @param number the number to check
+     * @return true if the number is within the range, false otherwise
+     */
+    public boolean isInRange(final int number) {
         return number >= start && number <= end;
     }
 
-    public boolean isPositiveConstrains(Integer num) {
+    /**
+     * Checks if a given number meets the positive constraints.
+     *
+     * @param num the number to check
+     * @return true if the number meets the positive constraints,
+     * false otherwise
+     */
+    public boolean isPositiveConstrains(final Integer num) {
         if (positiveConstrain) {
             if (num == null) {
                 return !rangeConstrain;
@@ -45,24 +92,23 @@ public class NumberSchema extends BaseSchema<Integer> {
         }
         return true;
     }
+
+    /**
+     * Validates a given integer value based on the defined constraints.
+     *
+     * @param num the integer value to validate
+     * @return true if the value is valid, false otherwise
+     */
     @Override
-    public boolean isValid(Integer num) {
-        var result = true;
+    public boolean isValid(final Integer num) {
         if (isRequired() && num == null) {
             return false;
         }
         if (rangeConstrain && !isInRange(num)) {
             return false;
         }
-        if (!isPositiveConstrains(num)) {
-            return false;
-        }
-        return result;
+        return isPositiveConstrains(num);
     }
-
-
-
-
 
 
 }

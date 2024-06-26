@@ -6,26 +6,56 @@ import lombok.NoArgsConstructor;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Schema for validating maps.
+ *
+ * @param <T> the type of values in the map
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @SuppressWarnings("unchecked")
-public class MapSchema<T> extends BaseSchema<Map<String, String>> {
+public final class MapSchema<T> extends BaseSchema<Map<String, String>> {
+    /**
+     * Limit size of maps schema.
+     * <p>
+     * default value less 1 is for no limit;
+     */
     private int sizeof = -1;
+
+    /**
+     * Map that defines the schema for each key in the map.
+     */
     private Map<String, ? extends BaseSchema<T>> schemaMap;
 
-    public MapSchema<T> sizeof(int sizeConstrain) {
+    /**
+     * Sets the size limit for the map.
+     *
+     * @param sizeConstrain the size limit to set
+     * @return the current MapSchema instance
+     */
+    public MapSchema<T> sizeof(final int sizeConstrain) {
         setSizeof(sizeConstrain);
         return this;
     }
 
+    /**
+     * Sets the schema as required.
+     *
+     * @return the current MapSchema instance
+     */
     public MapSchema<T> required() {
         setRequired(true);
         return this;
     }
 
-
+    /**
+     * Checks if the provided map is valid based on the defined schema.
+     *
+     * @param checkedMap the map to validate
+     * @return true if the map is valid, false otherwise
+     */
     @Override
-    public boolean isValid(Map<String, String> checkedMap) {
+    public boolean isValid(final Map<String, String> checkedMap) {
         if (isRequired() && checkedMap == null) {
             return false;
         }
@@ -46,11 +76,16 @@ public class MapSchema<T> extends BaseSchema<Map<String, String>> {
         return result.get();
     }
 
-    public void shape(Map<String, ? extends BaseSchema<T>> schemas) {
+    /**
+     * Sets the schema shape.
+     *
+     * @param schemas the schema map representing the shape
+     */
+    public void shape(final Map<String, ? extends BaseSchema<T>> schemas) {
         this.schemaMap = schemas;
     }
 
-    private void setSizeof(int sizeof) {
-        this.sizeof = sizeof;
+    private void setSizeof(final int sizeLimit) {
+        this.sizeof = sizeLimit;
     }
 }
