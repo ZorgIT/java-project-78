@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ApplicationTest {
+class AppTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 
@@ -23,7 +23,7 @@ class ApplicationTest {
     @Test
     @DisplayName("'main' method works correctly")
     void testMain() {
-        Application.main(null);
+        App.main(null);
         assertEquals("Hello, World!", output.toString(StandardCharsets.UTF_8).trim());
     }
 
